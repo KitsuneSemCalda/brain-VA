@@ -1,4 +1,5 @@
 import sys
+import robot.bot
 
 def get_arg():
     argument = ""
@@ -19,5 +20,7 @@ if __name__ == "__main__":
     argument = get_arg()
     if argument != "":
         print(f"O argumento a ser pesquisado é: {argument}")
+        robot = robot.bot.ChatBotFactory()
+        chatbot = robot.create_chatbot(argument)
     pass
 pass
