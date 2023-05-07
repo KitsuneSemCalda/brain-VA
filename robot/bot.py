@@ -41,13 +41,13 @@ class Gpt3:
         import os
         load_dotenv()
         openai.api_key = os.getenv("OPENAI_API_KEY")
-
-        params = {
-            "engine": "text-davinci-003",
-            "prompt": self.prompt,
-        }
+        openai.organization = os.getenv("ORG_ID")
         
-        response = openai.Completion.create(**params)
+        response = openai.Completion.create(
+            engine = 'text-davinci-003',
+            prompt = self.prompt,
+            max_tokens=1024
+        )
         return str(response)
 pass
 
