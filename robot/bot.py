@@ -1,10 +1,10 @@
-
 def sanitize(content):
     import html2text
     from bs4 import BeautifulSoup
     sanitized_content = BeautifulSoup(content, 'html.parser').get_text()
     convert = html2text.HTML2Text()
     content = convert.handle(sanitized_content)
+    content = content.replace("\n\n", "")
     return content
 
 class WikipediaSearch:
