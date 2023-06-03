@@ -36,24 +36,31 @@ class Gpt3:
         pass
 
     def generate(self):
-        from dotenv import load_dotenv
-        import openai
-        import os
-        load_dotenv()
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        openai.organization = os.getenv("ORG_ID")
+        response = ""
+        try:
+            from gpt4all import GPT4ALL
+            gptj = GPT4ALL("ggml-gpt4all-j-v1.3-groovy")
+            response =  gptj.generate(self.prompt)
+        except Exception:
+            from dotenv import load_dotenv
+            import openai
+            import os
+            load_dotenv()
+            openai.api_key = os.getenv("OPENAI_API_KEY")
+            openai.organization = os.getenv("ORG_ID")
         
-        response = openai.Completion.create(
-            engine = 'text-davinci-003',
-            prompt = self.prompt,
-            max_tokens=1024
-        )
-        return str(response)
+            response = openai.Completion.create(
+                engine = 'text-davinci-003',
+                prompt = self.prompt,
+                max_tokens=1024
+            )
+        finally:
+            return str(response)
 pass
 
 class PrologFile:
     def __init__(self, term, content):
-        self.filename = str(term) + ".pl"
+        self.filename = str(term).removesuffix(" ").replace(" ", "_") + ".pl"
         self.content = content
         pass
 
@@ -65,7 +72,7 @@ pass
 
 class FortranFile:
     def __init__(self, term, content):
-        self.filename = str(term) + ".f"
+        self.filename = str(term).removesuffix(" ").replace(" ", "_")+ ".f"
         self.content = content
         pass
 
