@@ -63,15 +63,36 @@ class PrologFile:
         pass
 pass
 
+class FortranFile:
+    def __init__(self, term, content):
+        self.filename = str(term) + ".f"
+        self.content = content
+        pass
+
+    def create(self):
+        with open(self.filename, 'w') as file:
+            file.write(self.content)
+        pass
+pass
+
 class ChatBotFactory:
     def create_chatbot(self, term):
         wikipedia_search = WikipediaSearch(term)
         page = wikipedia_search.search()
         content = sanitize(page.content)
-        prompt = f"gere um código em prolog definindo regras e fatos sobre o texto a seguir:\n" + content
-        gpt3 = Gpt3(prompt)
-        prolog = gpt3.generate()
+        
+        prompt1 = f"gere um código em prolog definindo regras e fatos sobre o texto a seguir:\n" + content
+        gpt3_prolog = Gpt3(prompt1)
+        prolog = gpt3_prolog.generate()
         prolog_file = PrologFile(term, prolog)
         prolog_file.create()
+        
+        prompt2 = f"gere um código em fortran definindo códigos de calculos de forma geral sobre o texto a seguir:\n" + content
+        gpt3_fortran = Gpt3(prompt2)
+        fortran  = gpt3_fortran.generate()
+        gpt3_fortran = Gpt3(f"verifique se o código anterior está completo se não estiver complete: {fortran}")
+        fortran = gpt3_fortran.generate()
+        fortran_file = FortranFile(term, fortran)
+        fortran_file.create()
         pass
 pass
