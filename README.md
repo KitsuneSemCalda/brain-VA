@@ -42,7 +42,7 @@ Substitua `"termo_de_pesquisa"` pelo termo de pesquisa desejado.
 
 - A classe `FortranFile` cria um arquivo em Fortran com base nos calculos de cada conteudo que foi fornecido.
 
-- A classe `ChatBotFactory` utiliza as classes anteriores para criar um chatbot que busca informações na Wikipedia, gera código em Prolog e cria um arquivo correspondente.
+- A classe `ChatBotFactory` utiliza as classes anteriores para criar um chatbot que busca informações na Wikipedia, gera código em Prolog e Fortran e cria um arquivo correspondente.
 
 - O arquivo `main.py` é responsável por receber o termo de pesquisa como argumento de linha de comando, criar o chatbot e executar as etapas necessárias.
 
