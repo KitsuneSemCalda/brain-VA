@@ -1,11 +1,11 @@
 # Brain - VA
 
-Este é um programa Python que utiliza a biblioteca GPT-3 da OpenAI juntamente com a Wikipedia para criar um chatbot capaz de gerar código em Prolog com base em um termo de pesquisa.
+Este é um programa Python que utiliza a biblioteca GPT-3 da OpenAI ou a biblioteca do gpt4all juntamente com a Wikipedia para criar um chatbot capaz de gerar código em Prolog e Fortran com base em um termo de pesquisa.
 
 ## Requisitos
 
 - Python 3.x
-- Bibliotecas Python: `html2text`, `beautifulsoup4`, `wikipedia-api`, `python-dotenv`, `openai`
+- Bibliotecas Python: `html2text`, `beautifulsoup4`, `wikipedia-api`, `python-dotenv`, `openai`, `gpt4all`
 
 ## Como executar
 
